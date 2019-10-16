@@ -2,11 +2,8 @@
   <div>
     <md-table v-model="users" :table-header-color="tableHeaderColor">
       <md-table-row slot="md-table-row" slot-scope="{ item }">
-        <md-table-cell md-label="ID">{{ item.id }}</md-table-cell>
         <md-table-cell md-label="Name">{{ item.name }}</md-table-cell>
-        <md-table-cell md-label="Salary">{{ item.salary }}</md-table-cell>
-        <md-table-cell md-label="Country">{{ item.country }}</md-table-cell>
-        <md-table-cell md-label="City">{{ item.city }}</md-table-cell>
+        <md-table-cell md-label="Phone">{{ item.phone }}</md-table-cell>
       </md-table-row>
     </md-table>
   </div>
@@ -27,31 +24,28 @@ export default {
       users: [
         {
           id: 1,
-          name: "Dakota Rice",
-          salary: "$36,738",
-          country: "Niger",
-          city: "Oud-Turnhout"
+          name: "최현욱",
+          phone: "010-3641-3514"
         },
         {
           id: 2,
-          name: "Minerva Hooper",
-          salary: "$23,738",
-          country: "Curaçao",
-          city: "Sinaai-Waas"
+          name: "김태용",
+          phone: "010-2558-5974"
         },
         {
           id: 3,
-          name: "Sage Rodriguez",
-          salary: "$56,142",
-          country: "Netherlands",
-          city: "Overland Park"
+          name: "김모세",
+          phone: "010-7979-6630"
         },
         {
           id: 4,
-          name: "Philip Chaney",
-          salary: "$38,735",
-          country: "Korea, South",
-          city: "Gloucester"
+          name: "김남희",
+          phone: "010-5179-3041"
+        },
+        {
+          id: 5,
+          name: "장태희",
+          phone: "010-2745-0819"
         }
       ]
     };

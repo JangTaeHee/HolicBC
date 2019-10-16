@@ -6,17 +6,13 @@
     :style="sidebarStyle"
   >
     <div class="logo">
-      <a href="#" class="simple-text logo-mini">
+      <a class="simple-text logo-mini">
         <div class="logo-img">
           <img :src="imgLogo" alt="" />
         </div>
       </a>
 
-      <a
-        href="https://www.creative-tim.com/product/vue-material-dashboard"
-        target="_blank"
-        class="simple-text logo-normal"
-      >
+      <a class="simple-text logo-normal">
         {{ title }}
       </a>
     </div>
@@ -47,7 +43,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: "Vue MD"
+      default: "Holic B.C"
     },
     backgroundImage: {
       type: String,

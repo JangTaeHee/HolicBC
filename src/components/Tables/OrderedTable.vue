@@ -10,6 +10,14 @@
 </template>
 
 <script>
+import firebase from "firebase";
+import { firebaseConfig } from "@/firebase/firebase";
+
+// add firebase
+firebase.initializeApp(firebaseConfig);
+
+var db = firebase.firestore();
+
 export default {
   name: "ordered-table",
   props: {
@@ -21,34 +29,22 @@ export default {
   data() {
     return {
       selected: [],
-      users: [
-        {
-          id: 1,
-          name: "최현욱",
-          phone: "010-3641-3514"
-        },
-        {
-          id: 2,
-          name: "김태용",
-          phone: "010-2558-5974"
-        },
-        {
-          id: 3,
-          name: "김모세",
-          phone: "010-7979-6630"
-        },
-        {
-          id: 4,
-          name: "김남희",
-          phone: "010-5179-3041"
-        },
-        {
-          id: 5,
-          name: "장태희",
-          phone: "010-2745-0819"
-        }
-      ]
+      users: []
     };
+  },
+  methods: {
+    getList() {
+      const tmpList = new Array();
+      db.collection("administrator").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          tmpList.push(doc.data());
+        });
+        this.users = tmpList;
+      });
+    }
+  },
+  created() {
+    this.getList();
   }
 };
 </script>

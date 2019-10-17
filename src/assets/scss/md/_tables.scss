@@ -1,8 +1,13 @@
+.table_input{
+  width: 80%;
+  text-align: center;
+}
+
 .md-table-cell-container{
   padding: 0;
   .md-table-cell:last-child &{
     padding-right: 0;
-    text-align: right;
+    text-align: center;
     display: flex;
   }
 }

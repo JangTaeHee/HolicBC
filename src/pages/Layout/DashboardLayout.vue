@@ -6,19 +6,15 @@
       <mobile-menu slot="content"></mobile-menu>
       <sidebar-link to="/dashboard">
         <md-icon>dashboard</md-icon>
-        <p>Dashboard</p>
+        <p>운영진 정보</p>
       </sidebar-link>
       <sidebar-link to="/rival_toto_event">
         <md-icon>dashboard</md-icon>
-        <p>Rival Toto Event</p>
+        <p>라이벌전 토토 참가</p>
       </sidebar-link>
-      <sidebar-link to="/user">
-        <md-icon>person</md-icon>
-        <p>User Profile</p>
-      </sidebar-link>
-      <sidebar-link to="/table">
-        <md-icon>content_paste</md-icon>
-        <p>Table list</p>
+      <sidebar-link to="/rival_toto_result">
+        <md-icon>dashboard</md-icon>
+        <p>라이벌전 토토 결과</p>
       </sidebar-link>
     </side-bar>
 

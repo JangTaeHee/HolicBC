@@ -1,15 +1,5 @@
 <template>
   <div>
-    <md-card-content>
-      <div class="md-layout">
-        <div class="md-layout-item md-small-size-100 md-size-33">
-          <md-field>
-            <label>Name</label>
-            <md-input v-model="user.name"></md-input>
-          </md-field>
-        </div>
-      </div>
-    </md-card-content>
     <md-table v-model="games" :table-header-color="tableHeaderColor">
       <md-table-row slot="md-table-row" slot-scope="{ item, index  }">
         <md-table-cell md-label="Player">{{ item.player_one }}</md-table-cell>
@@ -44,7 +34,7 @@ export default {
       selected: [],
       games: [],
       user:{
-        name: "",
+        name: "정답지",
         phone: ""
       },
       answer: {},
@@ -61,7 +51,7 @@ export default {
         querySnapshot.forEach((doc) => {
           tmpList.push(doc.data());
         });
-        this.games = tmpList.sort(this.sortByProperty("id"));;
+        this.games = tmpList;
       });
     },
     inputCheck() {
@@ -112,57 +102,28 @@ export default {
         alert("모든 필드를 입력하세요.");
       }
     },
-    async insertAnswer() {
-      const thisnt = this;
-      if(await this.docCheck() <= 0){
-            db.collection('event').doc('rival').collection('user_answer').add({
-              name:thisnt.user.name
+    insertAnswer() {
+      db.collection('event').doc('rival').collection('user_answer').doc(this.user.name).collection('answer').get().then((querySnapshot) => {
+        if(querySnapshot.size <= 0 ){
+          this.answer.forEach((item, index) => {
+            db.collection('event').doc('rival').collection('user_answer').doc(this.user.name).collection('answer').add({
+              id:index,
+              score_one: item.score_one,
+              score_two: item.score_two
             })
             .then(function(docRef) {
                 console.log("Document written with ID: ", docRef.id);
-                thisnt.answer.forEach((item, index) => {
-                  db.collection('event').doc('rival').collection('user_answer').doc(docRef.id).collection('answer').add({
-                    id:index,
-                    score_one: item.score_one,
-                    score_two: item.score_two
-                  })
-                  .then(function(docRef) {
-                      console.log("Document written with ID: ", docRef.id);
-                  })
-                  .catch(function(error) {
-                      console.error("Error adding document: ", error);
-                  });
-                });
-                alert("제출 성공!");
             })
             .catch(function(error) {
                 console.error("Error adding document: ", error);
             });
-      }else{
+          });
+          alert("제출 성공!");
+        }
+        else{
           alert('이미 제출된 회원입니다.');
-      }
-    },
-    async docCheck() {
-      const thisnt = this;
-      let cnt = 0;
-      await db.collection('event').doc('rival').collection('user_answer').get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            if(thisnt.user.name === doc.data().name){
-              cnt++;
-            }
-        });
-      })
-      return cnt;
-    },
-    sortByProperty(property){  
-      return function(a,b){  
-          if(a[property] > b[property])  
-            return 1;  
-          else if(a[property] < b[property])  
-            return -1;  
-      
-          return 0;  
-      }  
+        }
+      });
     }
   },
   created() {

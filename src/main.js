@@ -18,6 +18,15 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import App from "./App";
 
+// import firebase from "firebase";
+// import { firebaseConfig } from "./firebase/firebase";
+// import { firestorePlugin } from "vuefire";
+
+// add firebase
+// firebase.initializeApp(firebaseConfig);
+// firebase.analytics();
+// Vue.use(firestorePlugin);
+
 // router setup
 import routes from "./routes/routes";
 
@@ -30,13 +39,6 @@ import Notifications from "./components/NotificationPlugin";
 import MaterialDashboard from "./material-dashboard";
 
 import Chartist from "chartist";
-
-import firebase from "firebase";
-import { firebaseConfig } from "./firebase/firebase";
-
-// add firebase
-firebase.initializeApp(firebaseConfig);
-firebase.analytics();
 
 // configure router
 const router = new VueRouter({
